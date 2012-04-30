@@ -15,12 +15,17 @@
 @implementation ViewController
 @synthesize scrollView;
 
+
 - (void)viewDidLoad
 {
     
-    
-    scrollView.contentSize = CGSizeMake(500, 500);
-
+    scrollView.contentSize = CGSizeMake(2048, 1536);
+    UIButton *readNowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [readNowButton addTarget:self action:@selector(didChooseToReadFeatured:) forControlEvents:UIControlEventTouchUpInside];
+    [readNowButton setTag:10];
+    [readNowButton setFrame:CGRectMake(598, 174, 167, 39)];
+    [readNowButton setImage:[UIImage imageNamed:@"button_read-it-now"] forState:UIControlStateNormal];
+    [readNowButton setImage:[UIImage imageNamed:@"button_read-it-now_on"] forState:UIControlStateHighlighted];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
