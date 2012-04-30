@@ -22,7 +22,7 @@
     scrollView.contentSize = CGSizeMake(2048, 1536);
     UIButton *readNowButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [readNowButton addTarget:self action:@selector(didChooseToReadFeatured:) forControlEvents:UIControlEventTouchUpInside];
-    [readNowButton setTag:10];//yes
+    [readNowButton setTag:10];//no
     [readNowButton setFrame:CGRectMake(598, 174, 167, 39)];
     [readNowButton setImage:[UIImage imageNamed:@"button_read-it-now"] forState:UIControlStateNormal];
     [readNowButton setImage:[UIImage imageNamed:@"button_read-it-now_on"] forState:UIControlStateHighlighted];
