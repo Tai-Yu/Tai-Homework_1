@@ -19,7 +19,7 @@
 {
     
     
-    scrollView.contentSize = CGSizeMake(500, 500);//yes
+    scrollView.contentSize = CGSizeMake(500, 500);
 
     
     [super viewDidLoad];
