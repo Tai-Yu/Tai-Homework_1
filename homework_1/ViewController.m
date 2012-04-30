@@ -13,9 +13,14 @@
 @end
 
 @implementation ViewController
+@synthesize scrollView;
 
 - (void)viewDidLoad
 {
+    
+    scrollView.contentSize = CGSizeMake(500, 500);
+
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -26,9 +31,10 @@
     // Release any retained subviews of the main view.
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 @end
