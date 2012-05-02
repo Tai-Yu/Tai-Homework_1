@@ -40,7 +40,7 @@
     	// Do any additional setup after loading the view, typically from a nib.
 }
 
--(IBAction)didPressAnimate:(id)sender{
+-(IBAction)didPressAnimate:(id)sender{//what's the difference between (ibaction)(id)sender and (void)?
     UIImageView *animation = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cake.jpg"]];//can't use pdf file.
     animation.frame = CGRectMake(10, 10, 338, 450);
     [self.view addSubview:animation];
