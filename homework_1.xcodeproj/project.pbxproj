@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD8136DB154F6D1400BA5A01 /* fairytale_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD8136DA154F6D1400BA5A01 /* fairytale_overlay.jpg */; };
+		CD89DE431550706D00F7532B /* adventure_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD89DE3F1550706D00F7532B /* adventure_overlay.jpg */; };
+		CD89DE441550706D00F7532B /* animal_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD89DE401550706D00F7532B /* animal_overlay.jpg */; };
+		CD89DE451550706D00F7532B /* bedtime_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD89DE411550706D00F7532B /* bedtime_overlay.jpg */; };
+		CD89DE461550706D00F7532B /* classic_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD89DE421550706D00F7532B /* classic_overlay.jpg */; };
+		CDCE8FDD1550BB1C00BB6948 /* cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDCE8FDC1550BB1C00BB6948 /* cake.jpg */; };
 		CDF44085154E49860027AE0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44084154E49860027AE0C /* UIKit.framework */; };
 		CDF44087154E49860027AE0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44086154E49860027AE0C /* Foundation.framework */; };
 		CDF44089154E49860027AE0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44088154E49860027AE0C /* CoreGraphics.framework */; };
@@ -18,6 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD8136DA154F6D1400BA5A01 /* fairytale_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fairytale_overlay.jpg; path = ../../fairytale_overlay.jpg; sourceTree = "<group>"; };
+		CD89DE3F1550706D00F7532B /* adventure_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = adventure_overlay.jpg; path = ../../adventure_overlay.jpg; sourceTree = "<group>"; };
+		CD89DE401550706D00F7532B /* animal_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = animal_overlay.jpg; path = ../../animal_overlay.jpg; sourceTree = "<group>"; };
+		CD89DE411550706D00F7532B /* bedtime_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bedtime_overlay.jpg; path = ../../bedtime_overlay.jpg; sourceTree = "<group>"; };
+		CD89DE421550706D00F7532B /* classic_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = classic_overlay.jpg; path = ../../classic_overlay.jpg; sourceTree = "<group>"; };
+		CDCE8FDC1550BB1C00BB6948 /* cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cake.jpg; path = ../../cake.jpg; sourceTree = "<group>"; };
 		CDF44080154E49860027AE0C /* homework_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF44084154E49860027AE0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF44086154E49860027AE0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,6 +89,12 @@
 		CDF4408A154E49860027AE0C /* homework_1 */ = {
 			isa = PBXGroup;
 			children = (
+				CDCE8FDC1550BB1C00BB6948 /* cake.jpg */,
+				CD89DE3F1550706D00F7532B /* adventure_overlay.jpg */,
+				CD89DE401550706D00F7532B /* animal_overlay.jpg */,
+				CD89DE411550706D00F7532B /* bedtime_overlay.jpg */,
+				CD89DE421550706D00F7532B /* classic_overlay.jpg */,
+				CD8136DA154F6D1400BA5A01 /* fairytale_overlay.jpg */,
 				CDF44093154E49860027AE0C /* AppDelegate.h */,
 				CDF44094154E49860027AE0C /* AppDelegate.m */,
 				CDF44096154E49860027AE0C /* ViewController.h */,
@@ -151,6 +169,12 @@
 			files = (
 				CDF4408F154E49860027AE0C /* InfoPlist.strings in Resources */,
 				CDF4409B154E49860027AE0C /* ViewController.xib in Resources */,
+				CD8136DB154F6D1400BA5A01 /* fairytale_overlay.jpg in Resources */,
+				CD89DE431550706D00F7532B /* adventure_overlay.jpg in Resources */,
+				CD89DE441550706D00F7532B /* animal_overlay.jpg in Resources */,
+				CD89DE451550706D00F7532B /* bedtime_overlay.jpg in Resources */,
+				CD89DE461550706D00F7532B /* classic_overlay.jpg in Resources */,
+				CDCE8FDD1550BB1C00BB6948 /* cake.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +301,7 @@
 				CDF440A0154E49860027AE0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

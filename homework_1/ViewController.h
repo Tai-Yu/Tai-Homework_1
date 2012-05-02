@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController{
-    IBOutlet UIScrollView *scrollView;
+    UIScrollView *scrollView;
+    
 }
-
-@property (nonatomic, retain) UIScrollView *scrollView;
 @end
