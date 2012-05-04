@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3BD5141552ECE4005ADA61 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3BD5131552ECE4005ADA61 /* bird.png */; };
+		CD66DFA215520FC30067614A /* bussinessCard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD66DFA115520FC30067614A /* bussinessCard.jpg */; };
 		CDC3522B15519B5800A52BE3 /* adventure_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */; };
 		CDC3522C15519B5800A52BE3 /* animal_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522615519B5800A52BE3 /* animal_overlay.jpg */; };
 		CDC3522D15519B5800A52BE3 /* bedtime_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522715519B5800A52BE3 /* bedtime_overlay.jpg */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD3BD5131552ECE4005ADA61 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
+		CD66DFA115520FC30067614A /* bussinessCard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bussinessCard.jpg; sourceTree = "<group>"; };
 		CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adventure_overlay.jpg; sourceTree = "<group>"; };
 		CDC3522615519B5800A52BE3 /* animal_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = animal_overlay.jpg; sourceTree = "<group>"; };
 		CDC3522715519B5800A52BE3 /* bedtime_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bedtime_overlay.jpg; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				CDF44094154E49860027AE0C /* AppDelegate.m */,
 				CDF44096154E49860027AE0C /* ViewController.h */,
 				CDF44097154E49860027AE0C /* ViewController.m */,
+				CD3BD5131552ECE4005ADA61 /* bird.png */,
+				CD66DFA115520FC30067614A /* bussinessCard.jpg */,
 				CDF44099154E49860027AE0C /* ViewController.xib */,
 				CDF4408B154E49860027AE0C /* Supporting Files */,
 			);
@@ -175,6 +181,8 @@
 				CDC3522E15519B5800A52BE3 /* cake.jpg in Resources */,
 				CDC3522F15519B5800A52BE3 /* classic_overlay.jpg in Resources */,
 				CDC3523015519B5800A52BE3 /* fairytale_overlay.jpg in Resources */,
+				CD66DFA215520FC30067614A /* bussinessCard.jpg in Resources */,
+				CD3BD5141552ECE4005ADA61 /* bird.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
