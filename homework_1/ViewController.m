@@ -18,6 +18,7 @@
 //Tai:Can u show me some examples to use delegate, I still don't know when and how to use delegate.
 
 #import "ViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
