@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C306C3B615545D330058151B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C306C3B515545D330058151B /* QuartzCore.framework */; };
 		CD3BD5141552ECE4005ADA61 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3BD5131552ECE4005ADA61 /* bird.png */; };
 		CDC3522B15519B5800A52BE3 /* adventure_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */; };
 		CDC445C01558317A002B1EB4 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC445BF1558317A002B1EB4 /* background.jpg */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C306C3B515545D330058151B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD3BD5131552ECE4005ADA61 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adventure_overlay.jpg; sourceTree = "<group>"; };
 		CDC445BF1558317A002B1EB4 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C306C3B615545D330058151B /* QuartzCore.framework in Frameworks */,
 				CDF44085154E49860027AE0C /* UIKit.framework in Frameworks */,
 				CDF44087154E49860027AE0C /* Foundation.framework in Frameworks */,
 				CDF44089154E49860027AE0C /* CoreGraphics.framework in Frameworks */,
@@ -77,6 +80,7 @@
 		CDF44083154E49860027AE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C306C3B515545D330058151B /* QuartzCore.framework */,
 				CDF44084154E49860027AE0C /* UIKit.framework */,
 				CDF44086154E49860027AE0C /* Foundation.framework */,
 				CDF44088154E49860027AE0C /* CoreGraphics.framework */,
