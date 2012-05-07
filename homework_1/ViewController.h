@@ -12,4 +12,5 @@
     UIScrollView *scrollView;
 
 }
+@property(nonatomic, strong) UIImageView *bird;
 @end
