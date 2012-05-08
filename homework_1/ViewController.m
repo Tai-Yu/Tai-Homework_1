@@ -46,7 +46,7 @@
      [templates setObject:bottomRight forKey:[NSString stringWithFormat:@"%@_Bottom_Right", land]];
      }
 
-     
+     YOu'll need to use this method to convert the string to a CGPoint: CGPointFromString()
      
      */
      
