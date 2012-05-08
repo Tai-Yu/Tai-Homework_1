@@ -10,7 +10,8 @@
 
 @interface ViewController : UIViewController{
     UIScrollView *scrollView;
-
+    bool birdDead;
 }
 @property(nonatomic, strong) UIImageView *bird;
+
 @end
