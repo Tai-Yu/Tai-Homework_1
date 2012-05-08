@@ -8,6 +8,7 @@
 //Tai:When U press Animate button, animated Bird(not just a image) starting to fly, once it flies downward, it'll call another method, and then another one, then it goes into a loop.
 
 //Tai:When u tap the bird, the bird'll disappear in 4 secs(there are some bugs, sometimes can't call the method when I tap it.)
+//
 
 
 
@@ -29,17 +30,18 @@
     [button setTitle:@"Animate" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(moveAnimation) forControlEvents:UIControlEventTouchUpInside];   
     
-    
+    //set up background image.
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 1080, 1636)];
     imageView.image = [UIImage imageNamed:@"background.jpg"];
    
+    //set up scroll view.
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(100, 100, 580, 800)];
     scrollView.backgroundColor = [UIColor grayColor];
     scrollView.alwaysBounceHorizontal = YES;
     [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     scrollView.contentSize = CGSizeMake(2048, 1536);
     
- 
+    //add background image and button into scrollview. 
     [scrollView addSubview:imageView];
     [scrollView addSubview:button];
     [self.view addSubview:scrollView];
@@ -51,7 +53,8 @@
 
 //Animate button pressed
 -(void)moveAnimation{
-
+    
+    //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     
     
@@ -64,21 +67,23 @@
     bird.animationRepeatCount = 0;
     [bird startAnimating];
     
-    
+    //set up bird's animation.
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationDidStopSelector:@selector(moveLeft:finished:context:)];
     bird.center = CGPointMake(500.0, 600.0);
+    
     bird.userInteractionEnabled = YES;//
     [bird addGestureRecognizer:tap];//this two line make the bird tappable.
     [UIView setAnimationDelegate:self];
    
-   
+    //add bird to scrollview.
     [scrollView addSubview:self.bird];  
     [UIView commitAnimations];
 }
 
+//when first animation stops it'll call |moveLeft|, then bird moves to left.
 -(void)moveLeft:(NSString *)animationID
 finished:(NSNumber *)finished
 context:(void *)context{
@@ -97,6 +102,7 @@ context:(void *)context{
     [UIView commitAnimations];
 }
 
+//when bird's |moveLeft| ends, it'll call |moveUp|, then bird moves up.
 -(void)moveUp:(NSString *)animationID
        finished:(NSNumber *)finished
         context:(void *)context{
@@ -116,6 +122,7 @@ context:(void *)context{
     
 }
 
+//when bird's |moveUp| finished, it'll call|moveDown|, then the bird'll move down.
 -(void)moveDown:(NSString *)animationID
        finished:(NSNumber *)finished
         context:(void *)context{
@@ -135,6 +142,7 @@ context:(void *)context{
 
 }
 
+//when user tap the bird, it'll call|kickBird|, then bird'll fly away and disappear.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdDead = true;
     //[UIView beginAnimations:nil context:nil];
