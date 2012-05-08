@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C306C3B615545D330058151B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C306C3B515545D330058151B /* QuartzCore.framework */; };
+		C3B2AEEB1559C04900AFA157 /* bird.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3B2AEEA1559C04900AFA157 /* bird.plist */; };
 		CD3BD5141552ECE4005ADA61 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3BD5131552ECE4005ADA61 /* bird.png */; };
 		CDC3522B15519B5800A52BE3 /* adventure_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */; };
 		CDC445C01558317A002B1EB4 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC445BF1558317A002B1EB4 /* background.jpg */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		C306C3B515545D330058151B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C3B2AEEA1559C04900AFA157 /* bird.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bird.plist; sourceTree = "<group>"; };
 		CD3BD5131552ECE4005ADA61 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
 		CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adventure_overlay.jpg; sourceTree = "<group>"; };
 		CDC445BF1558317A002B1EB4 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				CD3BD5131552ECE4005ADA61 /* bird.png */,
 				CDF44099154E49860027AE0C /* ViewController.xib */,
 				CDF4408B154E49860027AE0C /* Supporting Files */,
+				C3B2AEEA1559C04900AFA157 /* bird.plist */,
 			);
 			path = homework_1;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				CDC445C01558317A002B1EB4 /* background.jpg in Resources */,
 				CDC445C215583C38002B1EB4 /* bird2.png in Resources */,
 				CDC445C415583F1A002B1EB4 /* bird3.png in Resources */,
+				C3B2AEEB1559C04900AFA157 /* bird.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

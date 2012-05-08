@@ -23,6 +23,34 @@
 
 - (void)viewDidLoad
 {
+    //read in plist configuration file
+    /* 
+     From FarFaria:
+     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
+     // Build the array from the plist  
+     NSFileManager *fileManager = [NSFileManager defaultManager];
+     
+     if ([fileManager fileExistsAtPath: path]) {
+     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+     NSMutableArray *array2 = [NSMutableArray arrayWithArray:[dic objectForKey:@"Root"]]; 
+     [templates setObject:array2 forKey:land];    
+     NSString *signLocation = [dic objectForKey:@"Sign"];
+     if (signLocation) {
+     [templates setObject:signLocation forKey:[NSString stringWithFormat:@"%@_sign", land]];   
+     }
+     NSString *topLeft = [dic objectForKey:@"Top_Left"];
+     if (topLeft) {
+     [templates setObject:topLeft forKey:[NSString stringWithFormat:@"%@_Top_Left", land]];
+     }
+     NSString *bottomRight = [dic objectForKey:@"Bottom_Right"];
+     if (bottomRight) {
+     [templates setObject:bottomRight forKey:[NSString stringWithFormat:@"%@_Bottom_Right", land]];
+     }
+
+     YOu'll need to use this method to convert the string to a CGPoint: CGPointFromString()
+     
+     */
+     
    
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -91,11 +119,13 @@ context:(void *)context{
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2.0];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationDidStopSelector:@selector(moveUp:finished:context:)];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];//GB instead of manual animation curve. figure out next animationCurve based on config
+    [UIView setAnimationDidStopSelector:@selector(moveUp:finished:context:)];//CALL YOURSELF INSTEAD OF MOVEUP
     
     
     bird.center = CGPointMake(300.0, 500.0);//move bird to this location.
+    //GB instead of manual point. figure out next position based on configuration
+    
     bird.transform = CGAffineTransformMakeScale(1.2, 1.2);//Scale up bird's size.
    
     [UIView setAnimationDelegate:self];
