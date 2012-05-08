@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>coordinates</key>
+	<array>
+		<string>{3070,1480}</string>
+	</array>
+	<key>movementType</key>
+	<array>
+		<integer>1</integer>
+	</array>
+</dict>
+</plist>
