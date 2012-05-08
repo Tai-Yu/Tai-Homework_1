@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
     //read in plist configuration file
-    /*
+    /* 
      From FarFaria:
      NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
      // Build the array from the plist  
