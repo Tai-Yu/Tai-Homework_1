@@ -54,8 +54,7 @@
      
      */
     
-    //set total position files in plist
-    index = 5;
+
     
     //read the bird.plish
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
@@ -64,6 +63,8 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
     
+    //set total position files in plist
+    index = [arrayPosition count];
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -131,15 +132,15 @@
     //int index = [arrayPosition index];
    
     //start animating from position 5 and then 4.....
-    if(index>-1){
+    if(index>0){
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:3.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
-        NSString *positon = [arrayPosition objectAtIndex:index];
+        NSString *positon = [arrayPosition objectAtIndex:--index];
         CGPoint nextPoint = CGPointFromString(positon);
         bird.center = nextPoint;
-        index = index - 1;
+
        
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
@@ -155,7 +156,7 @@
     //if index becomes-1, reset the index, and call moveToNextPosition again.
     else{
         
-        index=5;
+        index=[arrayPosition count];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:3.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
