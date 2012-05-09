@@ -67,6 +67,8 @@
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
     //index = [arrayPosition count];
     
+    //set total position files in plist
+    index = [arrayPosition count];
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -134,7 +136,7 @@
     //int index = [arrayPosition index];
    
     //start animating from position 5 and then 4.....
-    if(index>-1){
+    if(index>0){
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:2.0];
@@ -143,7 +145,7 @@
         NSString *positon = [arrayPosition objectAtIndex:index];
         CGPoint nextPoint = CGPointFromString(positon);
         bird.center = nextPoint;
-        index = index - 1;
+
        
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
@@ -158,7 +160,7 @@
     //Tai:Right now I need a last animation inorder to call|setAnimationDidStopselector|, I don't know if there is a way to just call himself again.
     else{
         
-        index=5;
+        index=[arrayPosition count];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:3.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
