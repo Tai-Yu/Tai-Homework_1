@@ -12,9 +12,13 @@
 		<string>{200,142}</string>
 		<string>{400,142}</string>
 	</array>
-	<key>duration</key>
-	<integer>0</integer>
-	<key>New item</key>
-	<string></string>
+	<key>animationCurve</key>
+	<array>
+		<integer>0</integer>
+		<integer>1</integer>
+		<integer>3</integer>
+		<integer>2</integer>
+		<integer>1</integer>
+	</array>
 </dict>
 </plist>

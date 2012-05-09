@@ -16,59 +16,23 @@
 @end
 @implementation ViewController
 @synthesize arrayPosition;
-@synthesize arrayMovement;
+@synthesize arrayAnimationCurve;
 @synthesize bird;
 
 - (void)viewDidLoad
 {
-    //read in plist configuration file
-    /* 
-     From FarFaria:
-     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
-     // Build the array from the plist  
-     NSFileManager *fileManager = [NSFileManager defaultManager];
-     
-     if ([fileManager fileExistsAtPath: path]) {
-     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-     NSMutableArray *array2 = [NSMutableArray arrayWithArray:[dic objectForKey:@"Root"]]; 
-     //what's the Root(for me it's like "coordinate?")
-     
-     
-     [templates setObject:array2 forKey:land];
-     //what's the land?
-     
-     NSString *signLocation = [dic objectForKey:@"Sign"];
-     if (signLocation) {
-     [templates setObject:signLocation forKey:[NSString stringWithFormat:@"%@_sign", land]];   
-     }
-     NSString *topLeft = [dic objectForKey:@"Top_Left"];
-     if (topLeft) {
-     [templates setObject:topLeft forKey:[NSString stringWithFormat:@"%@_Top_Left", land]];
-     }
-     NSString *bottomRight = [dic objectForKey:@"Bottom_Right"];
-     if (bottomRight) {
-     [templates setObject:bottomRight forKey:[NSString stringWithFormat:@"%@_Bottom_Right", land]];
-     }
-
-     YOu'll need to use this method to convert the string to a CGPoint: CGPointFromString()
-     
-     */
-    
-    
-    //set total position files in plist
-    //Tai:I want to Array to give me the total number it has, right now I don't know how.
-    index = 5;
     
     //read the bird.plish
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
     
-    //Array the positions.
+    //Array the positions and animationCurve.
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
-    //index = [arrayPosition count];
+    arrayAnimationCurve = [NSMutableArray arrayWithArray:[dic objectForKey:@"animationCurve"]];
     
-    //set total position files in plist
-    index = [arrayPosition count];
+    //return the sum of items to index.
+    indexPosition = [arrayPosition count];
+    indexAnimation = [arrayAnimationCurve count];
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -133,16 +97,16 @@
 -(void)moveToNextPosition:(NSString *)animationID
                  finished:(NSNumber *)finished
                   context:(void *)context{
-    //int index = [arrayPosition index];
    
-    //start animating from position 5 and then 4.....
-    if(index>0){
+    //start animating from last item.
+    if(indexPosition>0 && indexAnimation>0){
         
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:2.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        NSString *positon = [arrayPosition objectAtIndex:index];
+        NSString *positon = [arrayPosition objectAtIndex:--indexPosition];
+        NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:--indexAnimation];
+        [UIView setAnimationCurve:3];
         CGPoint nextPoint = CGPointFromString(positon);
         bird.center = nextPoint;
 
@@ -152,6 +116,7 @@
         [UIView commitAnimations];
 
          NSLog(@"%@",positon);//show the next position.
+        NSLog(@"%@",animationCurve);
          
     } 
     
@@ -160,83 +125,21 @@
     //Tai:Right now I need a last animation inorder to call|setAnimationDidStopselector|, I don't know if there is a way to just call himself again.
     else{
         
-        index=[arrayPosition count];
+        indexPosition=[arrayPosition count];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:3.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
         
         bird.center = CGPointMake(600, 600);
-        bird.transform = CGAffineTransformMakeRotation(M_PI/4);
+        bird.transform = CGAffineTransformMakeRotation(M_PI/10);
         
         [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];//call himself again.
         [UIView setAnimationDelegate:self];
         [UIView commitAnimations];
         
+        }
     }
-    }
-/*
-//when first animation stops it'll call |moveLeft|, then bird moves to left.
--(void)moveLeft:(NSString *)animationID
-finished:(NSNumber *)finished
-context:(void *)context{
-     if(birdDead) return;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];//GB instead of manual animation curve. figure out next animationCurve based on config
-    [UIView setAnimationDidStopSelector:@selector(moveUp:finished:context:)];//CALL YOURSELF INSTEAD OF MOVEUP
-    
-    
-    bird.center = CGPointMake(300.0, 500.0);//move bird to this location.
-    //GB instead of manual point. figure out next position based on configuration
-    
-    bird.transform = CGAffineTransformMakeScale(1.2, 1.2);//Scale up bird's size.
-   
-    [UIView setAnimationDelegate:self];
-    [UIView commitAnimations];
-}
 
-//when bird's |moveLeft| ends, it'll call |moveUp|, then bird moves up.
--(void)moveUp:(NSString *)animationID
-       finished:(NSNumber *)finished
-        context:(void *)context{
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDidStopSelector:@selector(moveDown:finished:context:)];
-    
-    bird.center = CGPointMake(600.0, 300.0);//move bird to this location.
-    bird.transform = CGAffineTransformMakeRotation(0.3);//rotate bird.
-    
-   
-    [UIView setAnimationDelegate:self];
-    [UIView commitAnimations];
-    
-}
-
-//when bird's |moveUp| finished, it'll call|moveDown|, then the bird'll move down.
--(void)moveDown:(NSString *)animationID
-       finished:(NSNumber *)finished
-        context:(void *)context{
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDidStopSelector:@selector(moveLeft:finished:context:)];//go into a loop.
-    
-    bird.center = CGPointMake(600.0, 750.0);//move bird to this location.
-    bird.transform = CGAffineTransformMakeRotation(-0.2);
-    bird.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    
-    [UIView setAnimationDelegate:self];
-    [UIView commitAnimations];
-
-}
-
- */
 //when user tap the bird, it'll call|kickBird|, then bird'll fly away and disappear.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdDead = true;
