@@ -11,5 +11,9 @@
 		<string>{300,240}</string>
 		<string>{200,142}</string>
 	</array>
+	<key>duration</key>
+	<integer>0</integer>
+	<key>New item</key>
+	<string></string>
 </dict>
 </plist>

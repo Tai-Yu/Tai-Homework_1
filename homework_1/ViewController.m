@@ -5,7 +5,7 @@
 //  Created by Tai-Yu Huang on 4/29/12.
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
-//Tai:Now I access to bird.plist and array the key"coordinates", how can I ask ipad to give me no.1 position or no.2 position?
+//Quesion on line 59 and 157
 
 
 #import "ViewController.h"
@@ -54,7 +54,9 @@
      
      */
     
+    
     //set total position files in plist
+    //Tai:I want to Array to give me the total number it has, right now I don't know how.
     index = 5;
     
     //read the bird.plish
@@ -63,6 +65,7 @@
     //Array the positions.
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
+    //index = [arrayPosition count];
     
     
     //press this button and bird shows up.
@@ -134,8 +137,9 @@
     if(index>-1){
         
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:3.0];
+        [UIView setAnimationDuration:2.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         NSString *positon = [arrayPosition objectAtIndex:index];
         CGPoint nextPoint = CGPointFromString(positon);
         bird.center = nextPoint;
@@ -144,23 +148,25 @@
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
         [UIView commitAnimations];
-        
-       
 
-         NSLog(@"%@",positon);
+         NSLog(@"%@",positon);//show the next position.
          
     } 
     
     
     //if index becomes-1, reset the index, and call moveToNextPosition again.
+    //Tai:Right now I need a last animation inorder to call|setAnimationDidStopselector|, I don't know if there is a way to just call himself again.
     else{
         
         index=5;
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:3.0];
         [UIView setAnimationBeginsFromCurrentState:YES];
+        
         bird.center = CGPointMake(600, 600);
-        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
+        bird.transform = CGAffineTransformMakeRotation(M_PI/4);
+        
+        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];//call himself again.
         [UIView setAnimationDelegate:self];
         [UIView commitAnimations];
         
