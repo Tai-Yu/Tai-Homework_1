@@ -53,14 +53,17 @@
      YOu'll need to use this method to convert the string to a CGPoint: CGPointFromString()
      
      */
-     
     
-    //keep track of array index on each movement.
+    //set total position files in plist
+    index = 5;
+    
+    //read the bird.plish
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
-   // NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //Array the positions.
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
-
+    
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -91,11 +94,7 @@
 
 //Animate button pressed
 -(void)tapAnimate{
-    int count = [arrayPosition count];
-    do {
-        
-        count = count - 1;
-    } while (count>0);
+    
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     
@@ -113,7 +112,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2.0];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationDidStopSelector:@selector(moveLeft:finished:context:)];
+    [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
     bird.center = CGPointMake(500.0, 600.0);
     
     bird.userInteractionEnabled = YES;//
@@ -125,6 +124,49 @@
     [UIView commitAnimations];
 }
 
+//when tapAnimate finished, it'll get call
+-(void)moveToNextPosition:(NSString *)animationID
+                 finished:(NSNumber *)finished
+                  context:(void *)context{
+    //int index = [arrayPosition index];
+   
+    //start animating from position 5 and then 4.....
+    if(index>-1){
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:3.0];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        NSString *positon = [arrayPosition objectAtIndex:index];
+        CGPoint nextPoint = CGPointFromString(positon);
+        bird.center = nextPoint;
+        index = index - 1;
+       
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
+        [UIView commitAnimations];
+        
+       
+
+         NSLog(@"%@",positon);
+         
+    } 
+    
+    
+    //if index becomes-1, reset the index, and call moveToNextPosition again.
+    else{
+        
+        index=5;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:3.0];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        bird.center = CGPointMake(600, 600);
+        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
+        [UIView setAnimationDelegate:self];
+        [UIView commitAnimations];
+        
+    }
+    }
+/*
 //when first animation stops it'll call |moveLeft|, then bird moves to left.
 -(void)moveLeft:(NSString *)animationID
 finished:(NSNumber *)finished
@@ -186,6 +228,7 @@ context:(void *)context{
 
 }
 
+ */
 //when user tap the bird, it'll call|kickBird|, then bird'll fly away and disappear.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdDead = true;

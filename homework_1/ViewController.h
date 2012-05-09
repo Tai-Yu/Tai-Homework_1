@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController{
     UIScrollView *scrollView;
     bool birdDead;
+    int index;
 }
 @property(nonatomic, strong) UIImageView *bird;
 @property(nonatomic, strong) NSArray *arrayPosition;
