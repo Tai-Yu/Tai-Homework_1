@@ -4,11 +4,18 @@
 <dict>
 	<key>coordinates</key>
 	<array>
-		<string>{3070,1480}</string>
+		<string>{100,140}</string>
+		<string>{100,240}</string>
+		<string>{150,360}</string>
+		<string>{200,450}</string>
+		<string>{250,600}</string>
+		<string>{300,500}</string>
 	</array>
 	<key>movementType</key>
 	<array>
 		<integer>1</integer>
+		<integer>2</integer>
+		<integer>0</integer>
 	</array>
 </dict>
 </plist>

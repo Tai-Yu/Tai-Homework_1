@@ -5,11 +5,7 @@
 //  Created by Tai-Yu Huang on 4/29/12.
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
-//Tai:When U press Animate button, animated Bird(not just a image) starting to fly, once it flies downward, it'll call another method, and then another one, then it goes into a loop.
-
-//Tai:When u tap the bird, the bird'll disappear in 4 secs(there are some bugs, sometimes can't call the method when I tap it.)
-//
-
+//Tai:Now I access to bird.plist and array the key"coordinates", how can I ask ipad to give me no.1 position or no.2 position?
 
 
 #import "ViewController.h"
@@ -19,6 +15,8 @@
 
 @end
 @implementation ViewController
+@synthesize arrayPosition;
+@synthesize arrayMovement;
 @synthesize bird;
 
 - (void)viewDidLoad
@@ -33,7 +31,12 @@
      if ([fileManager fileExistsAtPath: path]) {
      NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
      NSMutableArray *array2 = [NSMutableArray arrayWithArray:[dic objectForKey:@"Root"]]; 
-     [templates setObject:array2 forKey:land];    
+     //what's the Root(for me it's like "coordinate?")
+     
+     
+     [templates setObject:array2 forKey:land];
+     //what's the land?
+     
      NSString *signLocation = [dic objectForKey:@"Sign"];
      if (signLocation) {
      [templates setObject:signLocation forKey:[NSString stringWithFormat:@"%@_sign", land]];   
@@ -51,12 +54,19 @@
      
      */
      
-   
+    
+    //keep track of array index on each movement.
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
+   // NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+    arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
+
+    
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setFrame:CGRectMake(100, 100, 150, 40)];
     [button setTitle:@"Animate" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(moveAnimation) forControlEvents:UIControlEventTouchUpInside];   
+    [button addTarget:self action:@selector(tapAnimate) forControlEvents:UIControlEventTouchUpInside];   
     
     //set up background image.
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 1080, 1636)];
@@ -80,8 +90,12 @@
 
 
 //Animate button pressed
--(void)moveAnimation{
-    
+-(void)tapAnimate{
+    int count = [arrayPosition count];
+    do {
+        
+        count = count - 1;
+    } while (count>0);
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     
