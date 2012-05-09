@@ -5,7 +5,7 @@
 //  Created by Tai-Yu Huang on 4/29/12.
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
-//Quesion on line 59 and 157
+
 
 
 #import "ViewController.h"
@@ -67,7 +67,6 @@
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     
-    
    //set More than one images to bird(makes it fly).<--this function can make an Animation moves, not just an image moves.
     bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 500, 500)];
     bird.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"bird"],
@@ -97,47 +96,41 @@
 -(void)moveToNextPosition:(NSString *)animationID
                  finished:(NSNumber *)finished
                   context:(void *)context{
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2.0];
+    [UIView setAnimationBeginsFromCurrentState:YES];
    
     //start animating from last item.
+    //in reality, |indexPosition| should equal to |indexAnimation|, if not, it'd make the if()else() so complicated.
     if(indexPosition>0 && indexAnimation>0){
         
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:2.0];
-        [UIView setAnimationBeginsFromCurrentState:YES];
         NSString *positon = [arrayPosition objectAtIndex:--indexPosition];
         NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:--indexAnimation];
-        [UIView setAnimationCurve:3];
+        
+        [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
         CGPoint nextPoint = CGPointFromString(positon);
         bird.center = nextPoint;
 
-       
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
-        [UIView commitAnimations];
-
-         NSLog(@"%@",positon);//show the next position.
+        //show the next position and animationcurve in output.
+         NSLog(@"%@",positon);
         NSLog(@"%@",animationCurve);
          
     } 
-    
     
     //if index becomes-1, reset the index, and call moveToNextPosition again.
     //Tai:Right now I need a last animation inorder to call|setAnimationDidStopselector|, I don't know if there is a way to just call himself again.
     else{
         
         indexPosition=[arrayPosition count];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:3.0];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        bird.center = CGPointMake(600, 600);
-        bird.transform = CGAffineTransformMakeRotation(M_PI/10);
-        
-        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];//call himself again.
-        [UIView setAnimationDelegate:self];
-        [UIView commitAnimations];
-        
+        indexAnimation=[arrayAnimationCurve count];
+                
         }
+    
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
+    [UIView commitAnimations];
+
     }
 
 //when user tap the bird, it'll call|kickBird|, then bird'll fly away and disappear.

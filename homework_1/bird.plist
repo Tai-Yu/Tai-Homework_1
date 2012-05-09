@@ -4,13 +4,13 @@
 <dict>
 	<key>coordinates</key>
 	<array>
-		<string>{100,140}</string>
-		<string>{100,240}</string>
-		<string>{200,140}</string>
+		<string>{400,140}</string>
 		<string>{100,340}</string>
-		<string>{300,240}</string>
+		<string>{200,740}</string>
+		<string>{400,340}</string>
+		<string>{300,540}</string>
 		<string>{200,142}</string>
-		<string>{400,142}</string>
+		<string>{700,142}</string>
 	</array>
 	<key>animationCurve</key>
 	<array>
@@ -19,6 +19,8 @@
 		<integer>3</integer>
 		<integer>2</integer>
 		<integer>1</integer>
+		<integer>3</integer>
+		<integer>0</integer>
 	</array>
 </dict>
 </plist>
