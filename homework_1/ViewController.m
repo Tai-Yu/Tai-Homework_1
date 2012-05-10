@@ -17,6 +17,9 @@
 @end
 @implementation ViewController
 @synthesize arrayPosition;
+@synthesize tapExplosion;
+@synthesize tap;
+@synthesize imageExplosion;
 @synthesize arrayAnimationCurve;
 @synthesize arrayDuration;
 @synthesize bird;
@@ -29,7 +32,7 @@
 
     //Array the positions and animationCurve.
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-    arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
+    arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"position"]];
     arrayAnimationCurve = [NSMutableArray arrayWithArray:[dic objectForKey:@"animationCurve"]];
     arrayDuration = [NSMutableArray arrayWithArray:[dic objectForKey:@"Duration"]];
     
@@ -45,6 +48,12 @@
     //set up background image.
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 1080, 1636)];
     imageView.image = [UIImage imageNamed:@"background.jpg"];
+    
+    //set up background and bird can be tapped.
+    tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
+    tapExplosion =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(explosion:)];
+    imageView.userInteractionEnabled = YES;
+    [imageView addGestureRecognizer:tapExplosion];
    
     //set up scroll view.
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(100, 100, 580, 800)];
@@ -61,33 +70,28 @@
     	// Do any additional setup after loading the view, typically from a nib.
 }
 
-
-
 //Animate button pressed
 -(void)tapAnimate{
    
     //if birdDead is No, bird'll go into loop. otherwise, it'll rotate and disappear.
     birdAlive = YES;
     
-    //set up when user tap.
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
-    
    //set More than one images to bird(makes it fly).<--this function can make an Animation moves, not just an image moves.
-    bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 500, 500)];
+    bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 450, 450)];
     bird.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"bird"],[UIImage imageNamed:@"bird2"],[UIImage imageNamed:@"bird3"],[UIImage imageNamed:@"bird4"],[UIImage imageNamed:@"bird5"],[UIImage imageNamed:@"bird6"],[UIImage imageNamed:@"bird7"],[UIImage imageNamed:@"bird8"],nil];
     
     bird.animationDuration = 0.2;
     bird.animationRepeatCount = 0;
     [bird startAnimating];
        
+    bird.userInteractionEnabled = YES;//
+    [bird addGestureRecognizer:tap];//this two line make the bird tappable.
+
     //set up bird's animation->simplify it, I wanna call |moveToNextPosition| immediately.
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
     [UIView commitAnimations];
-    
-    bird.userInteractionEnabled = YES;//
-    [bird addGestureRecognizer:tap];//this two line make the bird tappable.
    
     //add bird to scrollview.
     [scrollView addSubview:self.bird];  
@@ -120,7 +124,7 @@
             NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:index];
             
             [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
-            [UIView setAnimationDuration:(NSTimeInterval)[duration floatValue]];
+            [UIView setAnimationDuration:(NSTimeInterval)[duration floatValue]];//convert string to float.
             CGPoint nextPoint = CGPointFromString(positon);
             bird.center = nextPoint;
             
@@ -163,7 +167,22 @@
 //when user tap the bird, it'll call|kickBird|, then set birdDead to yes.Then the bird won't go into the loop.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdAlive = NO;
+   
     NSLog(@"Dead!");
+}
+
+//explore getting location from user.
+-(void)explosion:(UITapGestureRecognizer *)recognizer{
+    CGPoint location = [recognizer locationInView:self.view];//get the location when user tap
+    
+    imageExplosion = [[UIImageView alloc]initWithFrame:CGRectMake(location.x-150, location.y-150, 100, 100)];
+    imageExplosion.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"explosion_0"],[UIImage imageNamed:@"explosion_1"],[UIImage imageNamed:@"explosion_2"],[UIImage imageNamed:@"explosion_3"],[UIImage imageNamed:@"explosion_4"],[UIImage imageNamed:@"explosion_5"],[UIImage imageNamed:@"explosion_6"],[UIImage imageNamed:@"explosion_7"],[UIImage imageNamed:@"explosion_8"],[UIImage imageNamed:@"explosion_9"],[UIImage imageNamed:@"explosion_10"],[UIImage imageNamed:@"explosion_11"],[UIImage imageNamed:@"explosion_12"],[UIImage imageNamed:@"explosion_13"],[UIImage imageNamed:@"explosion_14"],nil];
+    
+    imageExplosion.animationDuration = 0.5;
+    imageExplosion.animationRepeatCount = 1;
+    [imageExplosion startAnimating];
+    
+    [scrollView addSubview:imageExplosion];
 }
 
 - (void)viewDidUnload
@@ -171,7 +190,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

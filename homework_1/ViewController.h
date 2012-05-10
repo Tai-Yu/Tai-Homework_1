@@ -14,6 +14,9 @@
     int index;
 }
 @property(nonatomic, strong) UIImageView *bird;
+@property(nonatomic, strong) UITapGestureRecognizer *tap;
+@property(nonatomic, strong) UITapGestureRecognizer *tapExplosion;
+@property(nonatomic, strong) UIImageView *imageExplosion;
 @property(nonatomic, strong) NSArray *arrayPosition;
 @property(nonatomic, strong) NSArray *arrayAnimationCurve;
 @property(nonatomic, strong) NSArray *arrayDuration;
