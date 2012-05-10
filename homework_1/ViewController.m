@@ -169,7 +169,8 @@
 //when user tap the bird, it'll call|kickBird|, then set birdDead to yes.Then the bird won't go into the loop.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdDead = YES;
-   }
+    NSLog(@"Dead!");
+    }
 
 - (void)viewDidUnload
 {
