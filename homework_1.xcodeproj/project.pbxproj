@@ -10,10 +10,14 @@
 		C306C3B615545D330058151B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C306C3B515545D330058151B /* QuartzCore.framework */; };
 		C3B2AEEB1559C04900AFA157 /* bird.plist in Resources */ = {isa = PBXBuildFile; fileRef = C3B2AEEA1559C04900AFA157 /* bird.plist */; };
 		CD3BD5141552ECE4005ADA61 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = CD3BD5131552ECE4005ADA61 /* bird.png */; };
-		CDC3522B15519B5800A52BE3 /* adventure_overlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */; };
 		CDC445C01558317A002B1EB4 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC445BF1558317A002B1EB4 /* background.jpg */; };
 		CDC445C215583C38002B1EB4 /* bird2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC445C115583C38002B1EB4 /* bird2.png */; };
 		CDC445C415583F1A002B1EB4 /* bird3.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC445C315583F1A002B1EB4 /* bird3.png */; };
+		CDC5596B155B39BF00F0A24E /* bird4.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC55966155B39BF00F0A24E /* bird4.png */; };
+		CDC5596C155B39BF00F0A24E /* bird5.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC55967155B39BF00F0A24E /* bird5.png */; };
+		CDC5596D155B39BF00F0A24E /* bird6.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC55968155B39BF00F0A24E /* bird6.png */; };
+		CDC5596E155B39BF00F0A24E /* bird7.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC55969155B39BF00F0A24E /* bird7.png */; };
+		CDC5596F155B39BF00F0A24E /* bird8.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC5596A155B39BF00F0A24E /* bird8.png */; };
 		CDF44085154E49860027AE0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44084154E49860027AE0C /* UIKit.framework */; };
 		CDF44087154E49860027AE0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44086154E49860027AE0C /* Foundation.framework */; };
 		CDF44089154E49860027AE0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF44088154E49860027AE0C /* CoreGraphics.framework */; };
@@ -28,10 +32,14 @@
 		C306C3B515545D330058151B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C3B2AEEA1559C04900AFA157 /* bird.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bird.plist; sourceTree = "<group>"; };
 		CD3BD5131552ECE4005ADA61 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
-		CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = adventure_overlay.jpg; sourceTree = "<group>"; };
 		CDC445BF1558317A002B1EB4 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		CDC445C115583C38002B1EB4 /* bird2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird2.png; sourceTree = "<group>"; };
 		CDC445C315583F1A002B1EB4 /* bird3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird3.png; sourceTree = "<group>"; };
+		CDC55966155B39BF00F0A24E /* bird4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird4.png; sourceTree = "<group>"; };
+		CDC55967155B39BF00F0A24E /* bird5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird5.png; sourceTree = "<group>"; };
+		CDC55968155B39BF00F0A24E /* bird6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird6.png; sourceTree = "<group>"; };
+		CDC55969155B39BF00F0A24E /* bird7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird7.png; sourceTree = "<group>"; };
+		CDC5596A155B39BF00F0A24E /* bird8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird8.png; sourceTree = "<group>"; };
 		CDF44080154E49860027AE0C /* homework_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = homework_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF44084154E49860027AE0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF44086154E49860027AE0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,15 +101,19 @@
 		CDF4408A154E49860027AE0C /* homework_1 */ = {
 			isa = PBXGroup;
 			children = (
-				CDC445C315583F1A002B1EB4 /* bird3.png */,
+				CD3BD5131552ECE4005ADA61 /* bird.png */,
 				CDC445C115583C38002B1EB4 /* bird2.png */,
+				CDC445C315583F1A002B1EB4 /* bird3.png */,
+				CDC55966155B39BF00F0A24E /* bird4.png */,
+				CDC55967155B39BF00F0A24E /* bird5.png */,
+				CDC55968155B39BF00F0A24E /* bird6.png */,
+				CDC55969155B39BF00F0A24E /* bird7.png */,
+				CDC5596A155B39BF00F0A24E /* bird8.png */,
 				CDC445BF1558317A002B1EB4 /* background.jpg */,
-				CDC3522515519B5800A52BE3 /* adventure_overlay.jpg */,
 				CDF44093154E49860027AE0C /* AppDelegate.h */,
 				CDF44094154E49860027AE0C /* AppDelegate.m */,
 				CDF44096154E49860027AE0C /* ViewController.h */,
 				CDF44097154E49860027AE0C /* ViewController.m */,
-				CD3BD5131552ECE4005ADA61 /* bird.png */,
 				CDF44099154E49860027AE0C /* ViewController.xib */,
 				CDF4408B154E49860027AE0C /* Supporting Files */,
 				C3B2AEEA1559C04900AFA157 /* bird.plist */,
@@ -173,12 +185,16 @@
 			files = (
 				CDF4408F154E49860027AE0C /* InfoPlist.strings in Resources */,
 				CDF4409B154E49860027AE0C /* ViewController.xib in Resources */,
-				CDC3522B15519B5800A52BE3 /* adventure_overlay.jpg in Resources */,
 				CD3BD5141552ECE4005ADA61 /* bird.png in Resources */,
 				CDC445C01558317A002B1EB4 /* background.jpg in Resources */,
 				CDC445C215583C38002B1EB4 /* bird2.png in Resources */,
 				CDC445C415583F1A002B1EB4 /* bird3.png in Resources */,
 				C3B2AEEB1559C04900AFA157 /* bird.plist in Resources */,
+				CDC5596B155B39BF00F0A24E /* bird4.png in Resources */,
+				CDC5596C155B39BF00F0A24E /* bird5.png in Resources */,
+				CDC5596D155B39BF00F0A24E /* bird6.png in Resources */,
+				CDC5596E155B39BF00F0A24E /* bird7.png in Resources */,
+				CDC5596F155B39BF00F0A24E /* bird8.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

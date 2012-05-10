@@ -5,7 +5,7 @@
 //  Created by Tai-Yu Huang on 4/29/12.
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
-
+//Can we also save images to plist?
 
 
 #import "ViewController.h"
@@ -24,7 +24,7 @@
     
     //read the bird.plish
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
-    
+
     //Array the positions and animationCurve.
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
@@ -64,18 +64,18 @@
 //Animate button pressed
 -(void)tapAnimate{
     
+    
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     
    //set More than one images to bird(makes it fly).<--this function can make an Animation moves, not just an image moves.
     bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 500, 500)];
-    bird.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"bird"],
-                            [UIImage imageNamed:@"bird2"],
-                            [UIImage imageNamed:@"bird3"],nil];
+    bird.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"bird"],[UIImage imageNamed:@"bird2"],[UIImage imageNamed:@"bird3"],[UIImage imageNamed:@"bird4"],[UIImage imageNamed:@"bird5"],[UIImage imageNamed:@"bird6"],[UIImage imageNamed:@"bird7"],[UIImage imageNamed:@"bird8"],nil];
+    
     bird.animationDuration = 0.2;
     bird.animationRepeatCount = 0;
     [bird startAnimating];
-    
+       
     //set up bird's animation.
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2.0];
@@ -87,6 +87,7 @@
     [bird addGestureRecognizer:tap];//this two line make the bird tappable.
     [UIView setAnimationDelegate:self];
    
+    
     //add bird to scrollview.
     [scrollView addSubview:self.bird];  
     [UIView commitAnimations];
