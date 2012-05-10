@@ -10,12 +10,12 @@
 
 @interface ViewController : UIViewController{
     UIScrollView *scrollView;
-    bool birdDead;
-    int indexPosition;
-    int indexAnimation;
+    bool birdAlive;
+    int index;
 }
 @property(nonatomic, strong) UIImageView *bird;
 @property(nonatomic, strong) NSArray *arrayPosition;
 @property(nonatomic, strong) NSArray *arrayAnimationCurve;
+@property(nonatomic, strong) NSArray *arrayDuration;
 
 @end

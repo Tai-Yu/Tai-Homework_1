@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
 //Tai:Can we also save images to plist?
-//Tai:previous version, when we tap the bird, it'll disappear, but still in the loop. In this version, when we tap the bird,it won't go into the loop.
+//Tai:line 82-85 I simplify it.
 
 
 #import "ViewController.h"
@@ -18,6 +18,7 @@
 @implementation ViewController
 @synthesize arrayPosition;
 @synthesize arrayAnimationCurve;
+@synthesize arrayDuration;
 @synthesize bird;
 
 - (void)viewDidLoad
@@ -30,10 +31,10 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
     arrayPosition = [NSMutableArray arrayWithArray:[dic objectForKey:@"coordinates"]];
     arrayAnimationCurve = [NSMutableArray arrayWithArray:[dic objectForKey:@"animationCurve"]];
+    arrayDuration = [NSMutableArray arrayWithArray:[dic objectForKey:@"Duration"]];
     
     //return the sum of items to index.
-    indexPosition = [arrayPosition count];
-    indexAnimation = [arrayAnimationCurve count];
+    index = [arrayPosition count];
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -66,7 +67,7 @@
 -(void)tapAnimate{
    
     //if birdDead is No, bird'll go into loop. otherwise, it'll rotate and disappear.
-    birdDead = NO;
+    birdAlive = YES;
     
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
@@ -79,21 +80,18 @@
     bird.animationRepeatCount = 0;
     [bird startAnimating];
        
-    //set up bird's animation.
+    //set up bird's animation->simplify it, I wanna call |moveToNextPosition| immediately.
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
-    bird.center = CGPointMake(500.0, 600.0);
+    [UIView commitAnimations];
     
     bird.userInteractionEnabled = YES;//
     [bird addGestureRecognizer:tap];//this two line make the bird tappable.
-    [UIView setAnimationDelegate:self];
    
-    
     //add bird to scrollview.
     [scrollView addSubview:self.bird];  
-    [UIView commitAnimations];
+    
 }
 
 //when tapAnimate finished, it'll get call
@@ -101,12 +99,43 @@
                  finished:(NSNumber *)finished
                   context:(void *)context{
     
-    //if birdDead is yes, bird won't go into the loop. instead it'll rotate and disappear.
-    if(birdDead){
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self];
+    
+    //if birdAlive is yes, bird'll keep flying.
+    if(birdAlive){
         
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDelegate:self];
+        //start animating from last item.
+        //if index <=0, reset the index, and call moveToNextPosition again.
+        if(index<=0){
+            
+            index=[arrayPosition count];
+            
+        }else {
+            
+            index--;
+            NSString *positon = [arrayPosition objectAtIndex:index];
+            NSString *duration =[arrayDuration objectAtIndex:index];
+            NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:index];
+            
+            [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
+            [UIView setAnimationDuration:(NSTimeInterval)[duration floatValue]];
+            CGPoint nextPoint = CGPointFromString(positon);
+            bird.center = nextPoint;
+            
+            //show the next position and animationcurve in output.
+            NSLog(@"%@",positon);
+            NSLog(@"%@",animationCurve);
+            NSLog(@"%@",duration);
+            
+        }
+        
+        [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
+       
+     //if birdAlive is No, it'll rotate and disppear.   
+    }else {
+        
         [UIView animateWithDuration:0.5 
                               delay:0.0 
                             options:UIViewAnimationCurveEaseOut 
@@ -125,52 +154,17 @@
                                                   [bird removeFromSuperview];
                                               }];
                          }];
-        [UIView commitAnimations];
-     
-     //if birdDead is NO, it'll go into the loop.   
-    }else {
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.0];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-   
-    //start animating from last item.
-    //in reality, |indexPosition| should equal to |indexAnimation|, if not, it'd make the if()else() so complicated.
-    if(indexPosition>0 && indexAnimation>0){
-        
-        NSString *positon = [arrayPosition objectAtIndex:--indexPosition];
-        NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:--indexAnimation];
-        
-        [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
-        CGPoint nextPoint = CGPointFromString(positon);
-        bird.center = nextPoint;
 
-        //show the next position and animationcurve in output.
-         NSLog(@"%@",positon);
-        NSLog(@"%@",animationCurve);
-         
-    } 
-    
-    //if index becomes-1, reset the index, and call moveToNextPosition again.
-    else{
-        
-        indexPosition=[arrayPosition count];
-        indexAnimation=[arrayAnimationCurve count];
-                
-        }
-    
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
-    [UIView commitAnimations];
 
     }
+    [UIView commitAnimations];
 }
 
 //when user tap the bird, it'll call|kickBird|, then set birdDead to yes.Then the bird won't go into the loop.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
-    birdDead = YES;
+    birdAlive = NO;
     NSLog(@"Dead!");
-    }
+}
 
 - (void)viewDidUnload
 {

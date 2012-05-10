@@ -22,5 +22,15 @@
 		<integer>3</integer>
 		<integer>0</integer>
 	</array>
+	<key>Duration</key>
+	<array>
+		<string>2.0</string>
+		<string>1.0</string>
+		<string>4.0</string>
+		<string>0.7</string>
+		<string>2.4</string>
+		<string>1.3</string>
+		<string>3.5</string>
+	</array>
 </dict>
 </plist>
