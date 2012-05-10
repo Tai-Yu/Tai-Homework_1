@@ -5,7 +5,8 @@
 //  Created by Tai-Yu Huang on 4/29/12.
 //  Copyright (c) 2012 Intuary. All rights reserved.
 //
-//Can we also save images to plist?
+//Tai:Can we also save images to plist?
+//Tai:previous version, when we tap the bird, it'll disappear, but still in the loop. In this version, when we tap the bird,it won't go into the loop.
 
 
 #import "ViewController.h"
@@ -63,7 +64,9 @@
 
 //Animate button pressed
 -(void)tapAnimate{
-    
+   
+    //if birdDead is No, bird'll go into loop. otherwise, it'll rotate and disappear.
+    birdDead = NO;
     
     //set up when user tap.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
@@ -98,6 +101,35 @@
                  finished:(NSNumber *)finished
                   context:(void *)context{
     
+    //if birdDead is yes, bird won't go into the loop. instead it'll rotate and disappear.
+    if(birdDead){
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDelegate:self];
+        [UIView animateWithDuration:0.5 
+                              delay:0.0 
+                            options:UIViewAnimationCurveEaseOut 
+                         animations:^{                             
+                             bird.transform = CGAffineTransformMakeRotation(0.3);
+                         } 
+                         completion:^(BOOL finished){
+                             [UIView animateWithDuration:3.0
+                                                   delay:0.5 
+                                                 options:0 
+                                              animations:^{
+                                                  bird.transform = CGAffineTransformMakeScale(0.3, 0.3);
+                                                  bird.center = CGPointMake(200.0, 200.0);
+                                                  bird.alpha = 0.0;
+                                              } completion:^(BOOL finished){
+                                                  [bird removeFromSuperview];
+                                              }];
+                         }];
+        [UIView commitAnimations];
+     
+     //if birdDead is NO, it'll go into the loop.   
+    }else {
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2.0];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -120,7 +152,6 @@
     } 
     
     //if index becomes-1, reset the index, and call moveToNextPosition again.
-    //Tai:Right now I need a last animation inorder to call|setAnimationDidStopselector|, I don't know if there is a way to just call himself again.
     else{
         
         indexPosition=[arrayPosition count];
@@ -133,38 +164,12 @@
     [UIView commitAnimations];
 
     }
-
-//when user tap the bird, it'll call|kickBird|, then bird'll fly away and disappear.
--(void)kickBird:(UITapGestureRecognizer *)sender{
-    birdDead = true;
-    //[UIView beginAnimations:nil context:nil];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDelegate:self];
-
-    [UIView animateWithDuration:4 
-                          delay:0.0 
-                        options:UIViewAnimationCurveEaseOut 
-                     animations:^{
-                         bird.transform = CGAffineTransformMakeRotation(0.1);
-                     } 
-                     completion:^(BOOL finished){
-                         [UIView animateWithDuration:3.0
-                                               delay:2.0 
-                                             options:0 
-                                          animations:^{
-                                              bird.transform = CGAffineTransformMakeScale(0.3, 0.3);
-                                              bird.center = CGPointMake(200.0, 200.0);
-                                              bird.alpha = 0.0;
-                                          } completion:^(BOOL finished){
-                                              [bird removeFromSuperview];
-                                              birdDead= nil;
-                                          }];
-                     }];
-    
-
-    
-    [UIView commitAnimations];
 }
+
+//when user tap the bird, it'll call|kickBird|, then set birdDead to yes.Then the bird won't go into the loop.
+-(void)kickBird:(UITapGestureRecognizer *)sender{
+    birdDead = YES;
+   }
 
 - (void)viewDidUnload
 {
