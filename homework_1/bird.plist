@@ -10,7 +10,7 @@
 		<string>{400,340}</string>
 		<string>{300,540}</string>
 		<string>{200,142}</string>
-		<string>{700,142}</string>
+		<string>{570,142}</string>
 	</array>
 	<key>animationCurve</key>
 	<array>
@@ -24,13 +24,13 @@
 	</array>
 	<key>Duration</key>
 	<array>
-		<string>2.0</string>
+		<string>0.4</string>
 		<string>1.0</string>
-		<string>4.0</string>
+		<string>0.3</string>
 		<string>0.7</string>
-		<string>2.4</string>
+		<string>0.6</string>
 		<string>1.3</string>
-		<string>3.5</string>
+		<string>0.6</string>
 	</array>
 </dict>
 </plist>

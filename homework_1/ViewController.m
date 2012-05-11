@@ -7,6 +7,7 @@
 //
 //Tai:Can we also save images to plist?
 //Tai:line 82-85 I simplify it.
+//Tai:try new stuff, when user taps, get the location.
 
 
 #import "ViewController.h"
@@ -19,7 +20,6 @@
 @synthesize arrayPosition;
 @synthesize tapExplosion;
 @synthesize tap;
-@synthesize imageExplosion;
 @synthesize arrayAnimationCurve;
 @synthesize arrayDuration;
 @synthesize bird;
@@ -41,7 +41,7 @@
     
     //press this button and bird shows up.
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setFrame:CGRectMake(100, 100, 150, 40)];
+    [button setFrame:CGRectMake(40, 40, 150, 40)];
     [button setTitle:@"Animate" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(tapAnimate) forControlEvents:UIControlEventTouchUpInside];   
     
@@ -49,7 +49,7 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 1080, 1636)];
     imageView.image = [UIImage imageNamed:@"background.jpg"];
     
-    //set up background and bird can be tapped.
+    //when user tap on back
     tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kickBird:)];
     tapExplosion =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(explosion:)];
     imageView.userInteractionEnabled = YES;
@@ -77,7 +77,7 @@
     birdAlive = YES;
     
    //set More than one images to bird(makes it fly).<--this function can make an Animation moves, not just an image moves.
-    bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 450, 450)];
+    bird = [[UIImageView alloc]initWithFrame:CGRectMake(150, 150, 250, 250)];
     bird.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"bird"],[UIImage imageNamed:@"bird2"],[UIImage imageNamed:@"bird3"],[UIImage imageNamed:@"bird4"],[UIImage imageNamed:@"bird5"],[UIImage imageNamed:@"bird6"],[UIImage imageNamed:@"bird7"],[UIImage imageNamed:@"bird8"],nil];
     
     bird.animationDuration = 0.2;
@@ -167,21 +167,19 @@
 //when user tap the bird, it'll call|kickBird|, then set birdDead to yes.Then the bird won't go into the loop.
 -(void)kickBird:(UITapGestureRecognizer *)sender{
     birdAlive = NO;
-   
     NSLog(@"Dead!");
 }
 
-//explore getting location from user.
+//getting location from user and do bomb animation.
 -(void)explosion:(UITapGestureRecognizer *)recognizer{
     CGPoint location = [recognizer locationInView:self.view];//get the location when user tap
     
-    imageExplosion = [[UIImageView alloc]initWithFrame:CGRectMake(location.x-150, location.y-150, 100, 100)];
+    UIImageView *imageExplosion = [[UIImageView alloc]initWithFrame:CGRectMake(location.x-150, location.y-150, 100, 100)];
     imageExplosion.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"explosion_0"],[UIImage imageNamed:@"explosion_1"],[UIImage imageNamed:@"explosion_2"],[UIImage imageNamed:@"explosion_3"],[UIImage imageNamed:@"explosion_4"],[UIImage imageNamed:@"explosion_5"],[UIImage imageNamed:@"explosion_6"],[UIImage imageNamed:@"explosion_7"],[UIImage imageNamed:@"explosion_8"],[UIImage imageNamed:@"explosion_9"],[UIImage imageNamed:@"explosion_10"],[UIImage imageNamed:@"explosion_11"],[UIImage imageNamed:@"explosion_12"],[UIImage imageNamed:@"explosion_13"],[UIImage imageNamed:@"explosion_14"],nil];
     
     imageExplosion.animationDuration = 0.5;
     imageExplosion.animationRepeatCount = 1;
     [imageExplosion startAnimating];
-    
     [scrollView addSubview:imageExplosion];
 }
 
