@@ -116,24 +116,24 @@
             
             index=[arrayPosition count];
             
-        }else {
-            
-            index--;
-            NSString *positon = [arrayPosition objectAtIndex:index];
-            NSString *duration =[arrayDuration objectAtIndex:index];
-            NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:index];
-            
-            [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
-            [UIView setAnimationDuration:(NSTimeInterval)[duration floatValue]];//convert string to float.
-            CGPoint nextPoint = CGPointFromString(positon);
-            bird.center = nextPoint;
-            
-            //show the next position and animationcurve in output.
-            NSLog(@"%@",positon);
-            NSLog(@"%@",animationCurve);
-            NSLog(@"%@",duration);
-            
         }
+        
+        index--;
+        NSString *positon = [arrayPosition objectAtIndex:index];
+        NSString *duration =[arrayDuration objectAtIndex:index];
+        NSNumber *animationCurve = [arrayAnimationCurve objectAtIndex:index];
+        
+        [UIView setAnimationCurve:(UIViewAnimationCurve)animationCurve];
+        [UIView setAnimationDuration:(NSTimeInterval)[duration floatValue]];//convert string to float.
+        CGPoint nextPoint = CGPointFromString(positon);
+        bird.center = nextPoint;
+        
+        //show the next position and animationcurve in output.
+        NSLog(@"%@",positon);
+        NSLog(@"%@",animationCurve);
+        NSLog(@"%@",duration);
+        
+        
         
         [UIView setAnimationDidStopSelector:@selector(moveToNextPosition:finished:context:)];
        
