@@ -112,6 +112,7 @@
         
         //start animating from last item.
         //if index <=0, reset the index, and call moveToNextPosition again.
+        //just testing something with branches
         if(index<=0){
             
             index=[arrayPosition count];
