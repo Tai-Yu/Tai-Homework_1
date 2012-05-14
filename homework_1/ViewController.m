@@ -8,6 +8,7 @@
 //Tai:Can we also save images to plist?
 //Tai:line 82-85 I simplify it.
 //Tai:try new stuff, when user taps, get the location.
+//testing something with branches and github
 
 
 #import "ViewController.h"
