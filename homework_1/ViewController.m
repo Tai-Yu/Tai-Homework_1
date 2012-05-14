@@ -28,6 +28,7 @@
 {
     
     //read the bird.plish
+    //making new change for pull request
     //this is a test of gennady_branch
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
 
