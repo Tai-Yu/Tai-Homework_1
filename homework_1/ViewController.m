@@ -28,6 +28,7 @@
 {
     
     //read the bird.plish
+    //this is a test of gennady_branch
     NSString *path = [[NSBundle mainBundle] pathForResource:@"bird" ofType:@"plist"];
 
     //Array the positions and animationCurve.
